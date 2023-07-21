@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div style="background-color: #f2f2f2; padding: 10px;">
+  <p style="margin: 0;">Hello {{ user.username }},</p>
+<div style="float: right;">
+    <a href="{% url 'bookings' %}" style="margin-right: 20px;">My Bookings</a>
+    <a href="{% url 'home' %}">Logout</a>
+  </div>
+  <div style="clear: both;"></div>
+</div>
+{% endif %}
+<div style="max-width: 800px; margin: 50px auto 0; padding: 20px; background-color: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  <h1 style="text-align: center;">Search Flights</h1>
+
+  <form method="GET" action="{% url 'search_flights' %}" style="margin-bottom: 20px;">
+    <div style="margin-bottom: 10px;">
+      <label for="departure_airport" style="display: block; margin-bottom: 5px;">Departure Airport:</label>
+      <select name="departure_airport" id="departure_airport" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%;">
+        <option value="">Select where you want to fly from</option>
+        {% for airport in airports %}
+          <option value="{{ airport.0 }}">{{ airport.0 }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <label for="arrival_airport" style="display: block; margin-bottom: 5px;">Arrival Airport:</label>
+      <select name="arrival_airport" id="arrival_airport" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%;">
+        <option value="">Select where you want to fly to</option>
+        {% for airport in airports %}
+          <option value="{{ airport.1 }}">{{ airport.1 }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <label for="date" style="display: block; margin-bottom: 5px;">Date:</label>
+      <input type="date" name="date" id="date" value="{{ date }}" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%;">
+    </div>
+    <button type="submit" style="background-color: #4CAF50; color: white; padding: 14px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 10px; width: 100%;">Search Flights</button>
+  </form>
+
+  {% if no_flights %}
+  <p>No flights available</p>
+{% else %}
+  {% if flight_list %}
+    <h2>Available Flights:</h2>
+    <ul>
+      {% for flight_dict in flight_list %}
+        <li style="border: 1px solid #ccc; border-radius: 5px; padding: 10px; margin-bottom: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h3 style="margin: 0;">Flight {{ flight_dict.flight.flightnumber }}</h3>
+              <p style="margin: 0;">{{ flight_dict.flight.departure_airport }} to {{ flight_dict.flight.arrival_airport }}</p>
+              <p style="margin: 0;">Available Seats: {{ flight_dict.flight.available_seats }}</p>
+            </div>
+            <div>
+              <a href="{{ flight_dict.booking_url }}" style="background-color: #4CAF50; color: white; padding: 10px 15px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 10px;">Book Flight</a>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endif %}
+
+</div>
+{% endblock %}

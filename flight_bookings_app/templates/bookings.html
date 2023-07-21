@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 50px auto 0; padding: 60px; background-color: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  <h1 style="text-align: center;">My Bookings</h1>
+   <table style="border-collapse: collapse; width: 100%;">
+     <thead>
+      <tr style="border-bottom: 1px solid #ddd;">
+        <th style="padding: 12px; text-align: left;">Booking ID</th>
+         <th style="padding: 12px; text-align: left;">Passenger Name</th>
+         <th style="padding: 12px; text-align: left;">Passenger Email</th>
+          <th style="padding: 12px; text-align: left;">Number of Passengers</th>
+          <th style="padding: 12px; text-align: left;">Departure Date</th>
+          <th style="padding: 12px; text-align: left;">Departure Airport</th>
+          <th style="padding: 12px; text-align: left;">Arrival Airport</th>
+          <th style="padding: 12px; text-align: left;">Departure Time</th>
+        </tr>
+      </thead>
+       <tbody>
+        {% for booking in bookings %}
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 12px;">{{ booking.booking_id }}</td>
+          <td style="padding: 12px;">{{ booking.passenger_name }}</td>
+          <td style="padding: 12px;">{{ booking.passenger_email }}</td>
+          <td style="padding: 12px;">{{ booking.num_passengers }}</td>
+          <td style="padding: 12px;">{{ booking.flight_number.departure_date }}</td>
+          <td style="padding: 12px;">{{ booking.flight_number.departure_airport }}</td>
+          <td style="padding: 12px;">{{ booking.flight_number.arrival_airport }}</td>
+          <td style="padding: 12px;">{{ booking.flight_number.departure_time }}</td>
+        </tr> {% empty %}
+         <tr>
+           <td colspan="7" style="text-align: center;">You haven't made any bookings yet.</td>
+          </tr>
+        {% endfor %}
+       </tbody>
+      </table>
+      <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <a href="{% url 'home' %}" style="background-color: #4CAF50; color: white; padding: 14px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin-right: 20px; cursor: pointer; border-radius: 10px;">Logout</a>
+        <a href="{% url 'search_flights' %}" style="background-color: #4CAF50; color: white; padding: 14px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; cursor: pointer; border-radius: 10px;">Back</a>
+      </div>
+    </div>
+    {% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 50px auto 0; padding: 20px; background-color: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+<h1 style="text-align: center;">Booking Confirmed</h1>
+<p style="text-align: center;">Your booking has been confirmed. Your booking ID is: <strong>{{ booking_id }}</strong></p>
+<div style="display: flex; justify-content: center; margin-top: 20px;">
+    <a href="{% url 'home' %}" style="background-color: #4CAF50; color: white; padding: 14px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin-right: 20px; cursor: pointer; border-radius: 10px;">Logout</a>
+    <a href="{% url 'search_flights' %}" style="background-color: #4CAF50; color: white; padding: 14px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin-right: 20px; cursor: pointer; border-radius: 10px;">Back to search</a>
+    <a href="{% url 'bookings' %}" style="background-color: #4CAF50; color: white; padding: 14px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; cursor: pointer; border-radius: 10px;">My Bookings</a>
+  </div>
+</div>
+{% endblock %}

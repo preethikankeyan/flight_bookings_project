@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div style="text-align: center;">
+    <h1>Welcome to the Flight Booking System</h1>
+    <p>Please login or sign up to continue</p>
+    <br>
+    <a href="{% url 'login' %}" style="display: inline-block; background-color: #4CAF50; color: white; padding: 14px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 10px;">Login</a>
+    <a href="{% url 'signup' %}" style="display: inline-block; background-color: #4CAF50; color: white; padding: 14px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 10px;">Sign up</a>
+  </div>
+{% endblock %}

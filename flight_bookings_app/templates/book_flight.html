@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 50px auto 0; padding: 20px; background-color: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  <h1 style="text-align: center;">Book Flight {{ flight.flightnumber }}</h1>
+  <p style="text-align: center;">Departing from {{ flight.departure_airport }} on {{ flight.departure_date }} at {{ flight.departure_time }}</p>
+  <p style="text-align: center;">Arriving at {{ flight.arrival_airport }}</p>
+  <p style="text-align: center;">Available seats: {{ flight.available_seats }}</p>
+
+  {% if error_message %}
+    <p class="error" style="text-align: center;">{{ error_message }}</p>
+  {% endif %}
+
+  <form method="post" style="margin-top: 20px; text-align: center;">
+    {% csrf_token %}
+    <div style="margin-bottom: 10px;">
+      <label for="name">Name:</label>
+      <input type="text" name="name" required>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <label for="email">Email:</label>
+      <input type="email" name="email" required>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <label for="seats">Seats required:</label>
+      <input type="number" name="seats" min="1" max="{{ flight.available_seats }}" required>
+    </div>
+    <button type="submit" style="background-color: #4CAF50; color: white; padding: 14px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 10px; width: 100%;">Book Flight</button>
+  </form>
+</div>
+{% endblock %}
