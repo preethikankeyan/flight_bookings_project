@@ -35,7 +35,9 @@ python manage.py runserver
 ```
 
 Now open your browser and visit [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin). You should see the Django 
-admin screen. If you go to [http://127.0.0.1:8000/index/](http://127.0.0.1:8000/) you should see the Home page of the App.
+admin screen. Credentials - Username -> admin , Password -> admin
+
+If you go to [http://127.0.0.1:8000/index/](http://127.0.0.1:8000/) you should see the Home page of the App. Credentials - Username - test , Password - Qwerty@1234
 
 ##Hosting
 This app is hosted using Github and PythonAnywhere (https://www.pythonanywhere.com/).
