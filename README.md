@@ -41,6 +41,9 @@ If you go to [http://127.0.0.1:8000/index/](http://127.0.0.1:8000/) you should s
 
 ##Hosting
 This app is hosted using Github and PythonAnywhere (https://www.pythonanywhere.com/).
+Credentials - Username - test , Password - Qwerty@1234
 
 You can access the app without doing any of the above steps by going to - https://preethikankeyan.pythonanywhere.com/
 The admin page can be accessed here - https://preethikankeyan.pythonanywhere.com/admin/
+Credentials - Username -> admin , Password -> admin
+
