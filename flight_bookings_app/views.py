@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from .models import Flight, Booking
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 import uuid
@@ -14,15 +14,29 @@ from datetime import date, timedelta
 def home(request):
     return render(request, 'home.html')
 
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login as auth_login
+from django.shortcuts import render, redirect
+
 def login(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
             return redirect('search_flights')
+        else:
+            try:
+                user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+                if user is None:
+                    raise ValueError('Invalid credentials')
+            except ValueError as e:
+                form.add_error(None, str(e))
+
     else:
         form = AuthenticationForm()
-        return render(request, 'login.html', {'form': form})
+
+    return render(request, 'login.html', {'form': form})
+
 
 def signup(request):
     if request.method == 'POST':
