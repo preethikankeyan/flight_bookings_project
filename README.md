@@ -11,6 +11,9 @@ Appropriate field validations, authentication and authorization methods are also
 ## Tech Stack
 This app is built using Django. It uses a SQL Lite DB for backend and HTML templates for front end. Page routings are done by creating views using the Django framework
 
+## Future Development
+Dockerizing the app will let anymore use this environment without any set up as everything comes in a Docker container. The local deployment of Docker by installing Docker and using a docker build command worked for the current Dockerfile and hence included in the repository.
+
 ### Usage
 
 1. Clone this repository by executing the following command in a CLI
